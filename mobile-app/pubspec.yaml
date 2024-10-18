@@ -34,3 +34,22 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/icons/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: packages/pokedex_ui_kit/fonts/Poppins-Light.ttf
+          weight: 100
+        - asset: packages/pokedex_ui_kit/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: packages/pokedex_ui_kit/fonts/Poppins-Medium.ttf
+          weight: 600
+        - asset: packages/pokedex_ui_kit/fonts/Poppins-Bold.ttf
+          weight: 900
+        - asset: packages/pokedex_ui_kit/fonts/Poppins-Italic.ttf
+          style: italic
+        
