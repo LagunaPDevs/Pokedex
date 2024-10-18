@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'pokedex',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: "Poppins"),
       routerDelegate: PokedexRouterDelegation(),
       routeInformationParser: PokedexRouteInformationParser(),
     );
