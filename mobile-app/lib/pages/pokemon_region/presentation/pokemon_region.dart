@@ -22,7 +22,7 @@ class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
       itemCount: state.pokemonList.length,
       itemBuilder: (context, index) => PokemonGridCard(
         pokemon: state.pokemonList[index],
-        onTap: (i) => {print(i)},
+        onTap: (id) => bloc.onClick(context, id: id),
       ),
     )));
   }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // project imports
 import 'package:pokedex/core/services/pokeapi_services.dart';
+import 'package:pokedex/routes/route_page_manager.dart';
 
 // ui_kit
 import 'package:pokedex_ui_kit/model/pokemon.dart';
@@ -20,4 +21,7 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
     emit(state.copyWith(
         isLoading: false, initialList: pokemonList, pokemonList: pokemonList));
   }
+
+  onClick(BuildContext context, {required int id}) =>
+      RoutePageManager.of(context).openPokemonDetail(id: id);
 }

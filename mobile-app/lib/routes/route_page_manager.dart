@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/pages/pokemon_detail/presentation/pokemon_detail.dart';
 import 'package:pokedex/routes/pages_routes.dart';
 import 'package:pokedex/routes/pokedex_route_path.dart';
 
@@ -30,6 +31,13 @@ class RoutePageManager extends ChangeNotifier {
   // var setter
   set routerPageModels(List<RouterPageModel>? routerPageModels) =>
       _routerPageModels = routerPageModels ?? _routerPageModels;
+
+  // open PokemonDetail page
+  void openPokemonDetail({Function? handleGoBack, required int id}) =>
+      _pushName(
+          name: PagesRoutes.pokemonDetailPage,
+          handledGoBack: handleGoBack,
+          page: PokemonDetail(pokemonId: id));
 
   // remove page from the stack
   void didPop(RouteSettings page) {
