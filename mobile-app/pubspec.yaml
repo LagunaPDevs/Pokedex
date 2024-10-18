@@ -16,6 +16,9 @@ dependencies:
     path: ../ui_kit/pokedex_ui_kit
   cupertino_icons: ^1.0.8
   flutter_secure_storage: ^9.2.2
+  provider: ^6.1.2
+  http: ^1.2.2
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
