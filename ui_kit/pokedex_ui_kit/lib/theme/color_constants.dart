@@ -16,7 +16,9 @@ const grassColor = Color(0xff71C558);
 const groundColor = Color(0xffCC9F4F);
 const iceColor = Color(0xff70CBD4);
 const normalColor = Color(0xffAAB09F);
+const poisonColor = Color(0xffb468b7);
 const psychicColor = Color(0xffE5709B);
+const rockColor = Color(0xffb2a061);
 const steelColor = Color(0xff89A1B0);
 const waterColor = Color(0xff539AE2);
 
