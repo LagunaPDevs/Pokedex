@@ -19,11 +19,11 @@ class PokemonGridCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: whiteColor,
+            color: PokedexThemeColor.whiteColor,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: mediumGreyColor.withOpacity(0.5),
+                color: PokedexThemeColor.mediumGreyColor.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 5,
                 offset: Offset(2, 4),
@@ -38,7 +38,7 @@ class PokemonGridCard extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: backgroundGreyColor,
+                    color: PokedexThemeColor.backgroundGreyColor,
                     borderRadius: BorderRadius.circular(8)),
               ),
             ),
@@ -69,7 +69,8 @@ class PokemonGridCard extends StatelessWidget {
               top: 4,
               child: Text(
                 "#${pokemon.id}",
-                style: const TextStyle(color: mediumGreyColor, fontSize: 12),
+                style: const TextStyle(
+                    color: PokedexThemeColor.mediumGreyColor, fontSize: 12),
               ),
             ),
           ],

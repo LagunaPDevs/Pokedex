@@ -25,8 +25,8 @@ class CachedImage extends StatelessWidget {
       imageUrl: image,
       imageBuilder: (context, url) => buildBody(context, url),
       progressIndicatorBuilder: (context, url, indicator) => Shimmer.fromColors(
-        baseColor: lightGreyColor,
-        highlightColor: whiteColor,
+        baseColor: PokedexThemeColor.lightGreyColor,
+        highlightColor: PokedexThemeColor.whiteColor,
         child: buildBody(
           context,
           NetworkImage(url),
