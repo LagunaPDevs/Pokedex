@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pages/pokemon_detail/presentation/pokemon_detail.dart';
+import 'package:pokedex/pages/root_page/presentation/root_page.dart';
 import 'package:pokedex/routes/pages_routes.dart';
 import 'package:pokedex/routes/pokedex_route_path.dart';
 
@@ -18,9 +19,7 @@ class RoutePageManager extends ChangeNotifier {
 
   final List<Page> _pages = [
     MaterialPage(
-        name: PagesRoutes.rootPage,
-        key: UniqueKey(),
-        child: const PokemonRegion(regionName: "kanto"))
+        name: PagesRoutes.rootPage, key: UniqueKey(), child: RootPage())
   ];
 
   List<Page> get pages => List.unmodifiable(_pages);

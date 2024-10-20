@@ -25,9 +25,9 @@ class PokemonGridCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: PokedexThemeColor.mediumGreyColor.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 5,
-                offset: Offset(2, 4),
+                spreadRadius: 2,
+                blurRadius: 4,
+                offset: const Offset(0, 1),
               ),
             ]),
         child: Stack(
