@@ -6,7 +6,10 @@ import 'package:pokedex/pages/pokemon_region/bloc/pokemon_region_cubit.dart';
 
 // ui_kit
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
+import 'package:pokedex_ui_kit/widgets/app_bars/pokemon_list_app_bar.dart';
 import 'package:pokedex_ui_kit/widgets/grids/pokemon_grid_list.dart';
+import 'package:pokedex_ui_kit/widgets/text_fields/rounded_text_field.dart';
 
 class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
   final String regionName;
@@ -20,6 +23,18 @@ class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
       BuildContext context, PokemonRegionState state, PokemonRegionCubit bloc) {
     return Scaffold(
         backgroundColor: PokedexThemeColor.whiteColor,
+        appBar: PokemonListAppBar(
+          backgroundColor: PokedexThemeColor.primary,
+          title: regionName,
+          isExpanded: state.expandedAppbar,
+          hideFunction: () => bloc.onExpandableClick(),
+          actionSvgPath: PokedexIcons.search,
+          child: RoundedTextField(
+            controller: TextEditingController(),
+            hintText: "Search",
+            onFieldSubmitted: (value) => bloc.onSearch(value),
+          ),
+        ),
         body: PokemonGridList(
             isLoading: state.isLoading,
             pokemonList: state.pokemonList,

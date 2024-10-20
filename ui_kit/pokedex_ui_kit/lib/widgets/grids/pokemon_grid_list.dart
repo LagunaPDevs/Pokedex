@@ -23,9 +23,10 @@ class PokemonGridList extends StatelessWidget {
         child: isLoading
             ? const PikachuRunningLoader()
             : pokemonList.isEmpty
-                ? const EmptyResultsCard(message: "No results found")
+                ? const SingleChildScrollView(
+                    child: EmptyResultsCard(message: "No results found"))
                 : GridView.builder(
-                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3),

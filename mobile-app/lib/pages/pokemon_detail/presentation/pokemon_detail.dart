@@ -10,6 +10,7 @@ import 'package:pokedex_ui_kit/widgets/cards/pokemon_detail_card.dart';
 import 'package:pokedex_ui_kit/widgets/app_bars/pokemon_detail_app_bar.dart';
 import 'package:pokedex_ui_kit/widgets/cards/pokemon_type_card.dart';
 import 'package:pokedex_ui_kit/widgets/boxes/pokemon_about_box.dart';
+import 'package:pokedex_ui_kit/widgets/loading/pikachu_running_loader.dart';
 
 class PokemonDetail extends BasePage<PokemonDetailState, PokemonDetailCubit> {
   final int pokemonId;
@@ -54,7 +55,9 @@ class PokemonDetail extends BasePage<PokemonDetailState, PokemonDetailCubit> {
                   ],
                 ),
               ))
-          : CircularProgressIndicator(),
+          : const Center(
+              child: PikachuRunningLoader(),
+            ),
     );
   }
 }

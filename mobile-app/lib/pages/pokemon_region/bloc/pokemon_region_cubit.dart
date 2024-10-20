@@ -22,6 +22,27 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
         isLoading: false, initialList: pokemonList, pokemonList: pokemonList));
   }
 
+  // On Pokemon click opens Pokemon Detailed page
   onClick(BuildContext context, {required int id}) =>
       RoutePageManager.of(context).openPokemonDetail(id: id);
+
+  // On search event
+  onSearch(String value) {
+    emit(state.copyWith(isLoading: true));
+    if (value.isEmpty) {
+      emit(state.copyWith(pokemonList: state.initialList));
+    } else {
+      List<Pokemon> resultList = state.pokemonList
+          .where((pokemon) =>
+              pokemon.name.toLowerCase().startsWith(value.toLowerCase()) ||
+              pokemon.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+      emit(state.copyWith(pokemonList: resultList));
+    }
+    emit(state.copyWith(isLoading: false));
+  }
+
+  // Open or close search bar in the AppBar
+  onExpandableClick() =>
+      emit(state.copyWith(expandedAppbar: !state.expandedAppbar));
 }
