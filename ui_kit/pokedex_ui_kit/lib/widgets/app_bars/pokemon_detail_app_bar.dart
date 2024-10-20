@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // package imports
 import 'package:pokedex_ui_kit/model/pokemon.dart';
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/utils/app_fonts.dart';
 import 'package:pokedex_ui_kit/utils/string_extensions.dart';
 
 // assets
@@ -35,19 +36,19 @@ class PokemonDetailAppBar extends StatelessWidget
                   PokedexThemeColor.whiteColor, BlendMode.srcIn),
             )),
       ),
-      title: Text(pokemon?.name.capitalize() ?? '',
-          style: const TextStyle(
+      title: Text(
+        pokemon?.name.capitalize() ?? '',
+        style: PokedexFontStyle(context).headline.copyWith(
               color: PokedexThemeColor.whiteColor,
-              fontWeight: FontWeight.w900,
-              fontSize: 32)),
+            ),
+      ),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 12),
           child: Text("#${pokemon?.id}",
-              style: const TextStyle(
-                  color: PokedexThemeColor.whiteColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16)),
+              style: PokedexFontStyle(context)
+                  .subtitle1
+                  .copyWith(color: PokedexThemeColor.whiteColor)),
         )
       ],
     );

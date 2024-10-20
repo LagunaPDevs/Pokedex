@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // package imports
 import 'package:pokedex_ui_kit/model/pokemon.dart';
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/utils/app_fonts.dart';
 import 'package:pokedex_ui_kit/utils/string_extensions.dart';
 import 'package:pokedex_ui_kit/widgets/image/cached_image.dart';
 
@@ -58,7 +59,7 @@ class PokemonGridCard extends StatelessWidget {
                   Text(
                     pokemon.name.capitalize(),
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 16),
+                    style: PokedexFontStyle(context).body1,
                     textAlign: TextAlign.center,
                   )
                 ],
@@ -69,8 +70,9 @@ class PokemonGridCard extends StatelessWidget {
               top: 4,
               child: Text(
                 "#${pokemon.id}",
-                style: const TextStyle(
-                    color: PokedexThemeColor.mediumGreyColor, fontSize: 12),
+                style: PokedexFontStyle(context).body2.copyWith(
+                      color: PokedexThemeColor.mediumGreyColor,
+                    ),
               ),
             ),
           ],

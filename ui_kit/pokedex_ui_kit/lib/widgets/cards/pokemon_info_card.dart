@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // external libraries
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex_ui_kit/utils/app_fonts.dart';
 
 class PokemonInfoCard extends StatelessWidget {
   final String? iconPath;
@@ -29,7 +30,7 @@ class PokemonInfoCard extends StatelessWidget {
               const SizedBox(
                 width: 8,
               ),
-              Text(value, style: const TextStyle(fontSize: 16))
+              Text(value, style: PokedexFontStyle(context).body1)
             ],
           ),
           const SizedBox(
@@ -37,7 +38,7 @@ class PokemonInfoCard extends StatelessWidget {
           ),
           Text(
             name,
-            style: const TextStyle(fontSize: 12),
+            style: PokedexFontStyle(context).body2,
           )
         ],
       ),

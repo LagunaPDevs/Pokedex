@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
+// project imports
 import 'package:pokedex/core/helpers/base_page.dart';
 import 'package:pokedex/pages/pokemon_region/bloc/pokemon_region_cubit.dart';
-import 'package:pokedex_ui_kit/widgets/cards/pokemon_grid_card.dart';
+
+// ui_kit
+import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/widgets/grids/pokemon_grid_list.dart';
 
 class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
   final String regionName;
@@ -14,16 +19,10 @@ class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
   Widget buildPage(
       BuildContext context, PokemonRegionState state, PokemonRegionCubit bloc) {
     return Scaffold(
-        body: Center(
-            child: GridView.builder(
-      shrinkWrap: true,
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-      itemCount: state.pokemonList.length,
-      itemBuilder: (context, index) => PokemonGridCard(
-        pokemon: state.pokemonList[index],
-        onTap: (id) => bloc.onClick(context, id: id),
-      ),
-    )));
+        backgroundColor: PokedexThemeColor.whiteColor,
+        body: PokemonGridList(
+            isLoading: state.isLoading,
+            pokemonList: state.pokemonList,
+            onPokemonClick: (id) => bloc.onClick(context, id: id)));
   }
 }

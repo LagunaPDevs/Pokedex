@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // package imports
 import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
 import 'package:pokedex_ui_kit/model/pokemon.dart';
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
 import 'package:pokedex_ui_kit/theme/pokemon_type_color_map.dart';
+import 'package:pokedex_ui_kit/utils/app_fonts.dart';
 import 'package:pokedex_ui_kit/widgets/cards/pokemon_info_card.dart';
 
 class PokemonAboutBox extends StatelessWidget {
@@ -22,10 +22,9 @@ class PokemonAboutBox extends StatelessWidget {
       child: Column(
         children: [
           Text("About",
-              style: TextStyle(
-                  color: pokemonTypeColorMap[pokemon.types.first],
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900)),
+              style: PokedexFontStyle(context).subtitle1.copyWith(
+                    color: pokemonTypeColorMap[pokemon.types.first],
+                  )),
           const SizedBox(
             height: 16,
           ),

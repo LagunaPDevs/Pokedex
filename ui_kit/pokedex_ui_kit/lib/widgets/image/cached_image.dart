@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_ui_kit/constants/assets_constants.dart';
 
 // package imports
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
@@ -34,7 +35,7 @@ class CachedImage extends StatelessWidget {
       ),
       errorWidget: (context, url, error) => buildBody(
         context,
-        const AssetImage("assets/silhouette.png"),
+        const AssetImage(AssetsConstants.bulbasurSilhoutte),
       ),
     );
   }
