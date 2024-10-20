@@ -46,7 +46,11 @@ class PokemonDetail extends BasePage<PokemonDetailState, PokemonDetailCubit> {
                     const SizedBox(
                       height: 16,
                     ),
-                    PokemonAboutBox(pokemon: state.pokemon!)
+                    PokemonAboutBox(pokemon: state.pokemon!),
+                    ElevatedButton(
+                        onPressed: () => bloc.onButtonClick(),
+                        child: Text(
+                            state.isCaptured ? "Captured" : "Catch pokemon"))
                   ],
                 ),
               ))
