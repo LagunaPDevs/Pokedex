@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 // external libraries
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,13 +10,20 @@ import 'package:pokedex/core/models/storaged_captured_pokemon.dart';
 import 'package:pokedex/core/services/storage_services.dart';
 import 'package:pokedex/routes/route_page_manager.dart';
 
+// ui_kit
+import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/theme/pokemon_type_color_map.dart';
+
 part 'captured_pokemons_state.dart';
 
 class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
   CapturedPokemonsCubit() : super(CapturedPokemonsState.initial());
 
   Future<void> init(BuildContext context) async {
+    // We get storaged pokemons from storage and set appbar color with the
+    // result
     await getCapturedPokemonsFromStorage();
+    await setAppBarColor();
   }
 
   // Get captured list from storage and set page vars
@@ -44,6 +52,7 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
     emit(state.copyWith(
         isLoading: true, selectedFilter: CapturedPokemonsFilterBy.byId));
     await getCapturedPokemonsFromStorage();
+    await setAppBarColor();
   }
 
   // On change radio button group value
@@ -99,4 +108,13 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
   // Open or close search bar in the AppBar
   onExpandableClick() =>
       emit(state.copyWith(expandedAppbar: !state.expandedAppbar));
+
+  // Change appbar color based on the most captured type of pokemon
+  setAppBarColor() async {
+    final pokemonType =
+        await StorageServices.getMostRepeatedTypeInStorage(state.storage);
+    emit(state.copyWith(
+      appbarColor: pokemonTypeColorMap[pokemonType],
+    ));
+  }
 }

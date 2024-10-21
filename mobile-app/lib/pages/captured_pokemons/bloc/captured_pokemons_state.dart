@@ -5,6 +5,7 @@ enum CapturedPokemonsFilterBy { byId, byName, byType }
 class CapturedPokemonsState {
   final bool isLoading;
   final bool expandedAppbar;
+  final Color appbarColor;
   final FlutterSecureStorage storage;
   final List<Pokemon> initialCapturedList;
   final List<Pokemon> capturedList;
@@ -14,6 +15,7 @@ class CapturedPokemonsState {
   CapturedPokemonsState({
     required this.isLoading,
     required this.expandedAppbar,
+    required this.appbarColor,
     required this.storage,
     required this.initialCapturedList,
     required this.capturedList,
@@ -24,6 +26,7 @@ class CapturedPokemonsState {
   factory CapturedPokemonsState.initial() => CapturedPokemonsState(
       isLoading: true,
       expandedAppbar: false,
+      appbarColor: PokedexThemeColor.lightGreyColor,
       storage: const FlutterSecureStorage(),
       initialCapturedList: [],
       capturedList: [],
@@ -33,12 +36,14 @@ class CapturedPokemonsState {
   CapturedPokemonsState copyWith(
           {bool? isLoading,
           bool? expandedAppbar,
+          Color? appbarColor,
           List<Pokemon>? initialCapturedList,
           List<Pokemon>? capturedList,
           CapturedPokemonsFilterBy? selectedFilter}) =>
       CapturedPokemonsState(
           isLoading: isLoading ?? this.isLoading,
           expandedAppbar: expandedAppbar ?? this.expandedAppbar,
+          appbarColor: appbarColor ?? this.appbarColor,
           storage: storage,
           initialCapturedList: initialCapturedList ?? this.initialCapturedList,
           capturedList: capturedList ?? this.capturedList,

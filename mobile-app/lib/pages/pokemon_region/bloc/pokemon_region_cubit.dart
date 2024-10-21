@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+
+// external libraries
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // project imports
 import 'package:pokedex/core/services/pokeapi_services.dart';
+import 'package:pokedex/core/services/storage_services.dart';
 import 'package:pokedex/routes/route_page_manager.dart';
+import 'package:pokedex/core/providers/auth_provider.dart';
 
 // ui_kit
 import 'package:pokedex_ui_kit/model/pokemon.dart';
+import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/theme/pokemon_type_color_map.dart';
 
 part 'pokemon_region_state.dart';
 
@@ -20,11 +27,25 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
     // query in "initialList" var so we don't need to request it again
     emit(state.copyWith(
         isLoading: false, initialList: pokemonList, pokemonList: pokemonList));
+    // Set appbar color based in most captured pokemon type
+    await setAppBarColor();
+    // After that we can hide the splash screen
+    if (context.mounted) context.read<AuthProvider>().loadingFinished = true;
   }
 
   // On Pokemon click opens Pokemon Detailed page
-  onClick(BuildContext context, {required int id}) =>
-      RoutePageManager.of(context).openPokemonDetail(id: id);
+  onClick(BuildContext context, {required int id}) async =>
+      RoutePageManager.of(context).openPokemonDetail(
+          id: id, handleGoBack: () async => await backFromDetailedPage());
+
+  // Comming back from Pokemon Detailed page we check storaged captured pokemons
+  // and update appbar color with the result
+  backFromDetailedPage() async {
+    emit(state.copyWith(isLoading: true));
+    await StorageServices.getCapturedPokemonsList(state.storage);
+    await setAppBarColor();
+    emit(state.copyWith(isLoading: false));
+  }
 
   // On search event
   onSearch(String value) {
@@ -45,4 +66,13 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
   // Open or close search bar in the AppBar
   onExpandableClick() =>
       emit(state.copyWith(expandedAppbar: !state.expandedAppbar));
+
+  // Change appbar color based on the most captured type of pokemon
+  setAppBarColor() async {
+    final pokemonType =
+        await StorageServices.getMostRepeatedTypeInStorage(state.storage);
+    emit(state.copyWith(
+      appbarColor: pokemonTypeColorMap[pokemonType],
+    ));
+  }
 }

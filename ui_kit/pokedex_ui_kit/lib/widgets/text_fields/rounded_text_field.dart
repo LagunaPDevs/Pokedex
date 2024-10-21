@@ -6,16 +6,16 @@ class RoundedTextField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
 
   const RoundedTextField(
-      {Key? key,
+      {super.key,
       required this.controller,
       required this.hintText,
-      required this.onFieldSubmitted})
-      : super(key: key);
+      required this.onFieldSubmitted});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      textInputAction: TextInputAction.search,
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         hintText: hintText,

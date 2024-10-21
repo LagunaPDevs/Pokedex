@@ -5,7 +5,6 @@ import 'package:pokedex/core/helpers/base_page.dart';
 import 'package:pokedex/pages/pokemon_region/bloc/pokemon_region_cubit.dart';
 
 // ui_kit
-import 'package:pokedex_ui_kit/theme/color_constants.dart';
 import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
 import 'package:pokedex_ui_kit/widgets/app_bars/pokemon_list_app_bar.dart';
 import 'package:pokedex_ui_kit/widgets/grids/pokemon_grid_list.dart';
@@ -22,9 +21,9 @@ class PokemonRegion extends BasePage<PokemonRegionState, PokemonRegionCubit> {
   Widget buildPage(
       BuildContext context, PokemonRegionState state, PokemonRegionCubit bloc) {
     return Scaffold(
-        backgroundColor: PokedexThemeColor.whiteColor,
+        backgroundColor: Theme.of(context).primaryColor,
         appBar: PokemonListAppBar(
-          backgroundColor: PokedexThemeColor.primary,
+          backgroundColor: state.appbarColor,
           title: regionName,
           isExpanded: state.expandedAppbar,
           hideFunction: () => bloc.onExpandableClick(),

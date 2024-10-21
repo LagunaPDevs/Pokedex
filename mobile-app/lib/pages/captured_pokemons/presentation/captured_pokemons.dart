@@ -21,11 +21,11 @@ class CapturedPokemons
   Widget buildPage(BuildContext context, CapturedPokemonsState state,
       CapturedPokemonsCubit bloc) {
     return Scaffold(
-        backgroundColor: PokedexThemeColor.whiteColor,
+        backgroundColor: Theme.of(context).primaryColor,
         appBar: PokemonListAppBar(
             isExpanded: state.expandedAppbar,
             actionSvgPath: PokedexIcons.sort,
-            backgroundColor: PokedexThemeColor.primary,
+            backgroundColor: state.appbarColor,
             hideFunction: () => bloc.onExpandableClick(),
             title: "My pokemons",
             child: AppBarFilteringChild(
