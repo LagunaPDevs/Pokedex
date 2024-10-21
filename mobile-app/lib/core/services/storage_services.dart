@@ -60,4 +60,10 @@ class StorageServices {
       {required FlutterSecureStorage storage, required String value}) async {
     await storage.write(key: StorageConstants.trainerPokemonType, value: value);
   }
+
+  static Future<String> getMostRepeatedTypeInStorage(
+      FlutterSecureStorage storage) async {
+    return await storage.read(key: StorageConstants.trainerPokemonType) ??
+        "unknown";
+  }
 }

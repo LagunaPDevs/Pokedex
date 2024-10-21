@@ -20,5 +20,5 @@ const pokemonTypeColorMap = <String, Color>{
   "dragon": PokedexThemeColor.dragonColor,
   "fairy": PokedexThemeColor.fairyColor,
   "stellar": PokedexThemeColor.lightGreyColor,
-  "unknown": PokedexThemeColor.lightGreyColor,
+  "unknown": PokedexThemeColor.primary,
 };

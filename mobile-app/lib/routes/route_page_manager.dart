@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/pages/pokemon_detail/presentation/pokemon_detail.dart';
-import 'package:pokedex/pages/root_page/presentation/root_page.dart';
-import 'package:pokedex/routes/pages_routes.dart';
-import 'package:pokedex/routes/pokedex_route_path.dart';
-
 // external libraries
 import 'package:provider/provider.dart';
 
 // project imports
+import 'package:pokedex/pages/loading/presentation/loading_page.dart';
+import 'package:pokedex/pages/pokemon_detail/presentation/pokemon_detail.dart';
+import 'package:pokedex/routes/pages_routes.dart';
+import 'package:pokedex/routes/pokedex_route_path.dart';
 import 'package:pokedex/routes/router_page_model.dart';
-import 'package:pokedex/pages/pokemon_region/presentation/pokemon_region.dart';
 
 class RoutePageManager extends ChangeNotifier {
   static RoutePageManager of(BuildContext context) =>
@@ -19,7 +17,9 @@ class RoutePageManager extends ChangeNotifier {
 
   final List<Page> _pages = [
     MaterialPage(
-        name: PagesRoutes.rootPage, key: UniqueKey(), child: RootPage())
+        name: PagesRoutes.rootPage,
+        key: UniqueKey(),
+        child: const LoadingPage())
   ];
 
   List<Page> get pages => List.unmodifiable(_pages);

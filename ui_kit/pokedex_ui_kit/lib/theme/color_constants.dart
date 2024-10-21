@@ -2,6 +2,7 @@ import 'dart:ui';
 
 class PokedexThemeColor {
   static const primary = Color(0xffcc0000);
+  static const electricBlue = Color(0xff173EA5);
 
   // pokemon type colors
   static const bugColor = Color(0xff94BC4A);
