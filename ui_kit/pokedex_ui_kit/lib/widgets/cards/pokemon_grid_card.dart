@@ -30,53 +30,58 @@ class PokemonGridCard extends StatelessWidget {
                 offset: const Offset(0, 1),
               ),
             ]),
-        child: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            Positioned.fill(
-              top: 70,
-              left: 0,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: PokedexThemeColor.backgroundGreyColor,
-                    borderRadius: BorderRadius.circular(8)),
+        child: LayoutBuilder(builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          final maxHeight = constraints.maxHeight;
+
+          return Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Positioned.fill(
+                top: maxHeight * 0.5,
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: PokedexThemeColor.backgroundGreyColor,
+                      borderRadius: BorderRadius.circular(8)),
+                ),
               ),
-            ),
-            Positioned(
-              top: 20,
-              child: Column(
-                children: [
-                  CachedImage(
-                      image: pokemon.image,
-                      buildBody: (context, image) => Container(
-                            width: 72,
-                            height: 72,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: image, fit: BoxFit.cover)),
-                          )),
-                  Text(
-                    pokemon.name.capitalize(),
-                    overflow: TextOverflow.ellipsis,
-                    style: PokedexFontStyle(context).body1,
-                    textAlign: TextAlign.center,
-                  )
-                ],
+              Positioned(
+                top: 20,
+                child: Column(
+                  children: [
+                    CachedImage(
+                        image: pokemon.image,
+                        buildBody: (context, image) => Container(
+                              constraints: BoxConstraints(
+                                  maxHeight: maxHeight * 0.6,
+                                  maxWidth: maxWidth * 0.6),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: image, fit: BoxFit.cover)),
+                            )),
+                    Text(
+                      pokemon.name.capitalize(),
+                      overflow: TextOverflow.ellipsis,
+                      style: PokedexFontStyle(context).body1,
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
               ),
-            ),
-            Positioned(
-              right: 8,
-              top: 4,
-              child: Text(
-                "#${pokemon.id}",
-                style: PokedexFontStyle(context).body2.copyWith(
-                      color: PokedexThemeColor.mediumGreyColor,
-                    ),
+              Positioned(
+                right: 8,
+                top: 4,
+                child: Text(
+                  "#${pokemon.id}",
+                  style: PokedexFontStyle(context).body2.copyWith(
+                        color: PokedexThemeColor.mediumGreyColor,
+                      ),
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }),
       ),
     );
   }
