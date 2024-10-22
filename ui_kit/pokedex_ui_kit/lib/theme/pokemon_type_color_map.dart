@@ -15,7 +15,7 @@ const pokemonTypeColorMap = <String, Color>{
   "water": PokedexThemeColor.waterColor,
   "grass": PokedexThemeColor.grassColor,
   "electric": PokedexThemeColor.electricColor,
-  "physic": PokedexThemeColor.psychicColor,
+  "psychic": PokedexThemeColor.psychicColor,
   "ice": PokedexThemeColor.iceColor,
   "dragon": PokedexThemeColor.dragonColor,
   "fairy": PokedexThemeColor.fairyColor,

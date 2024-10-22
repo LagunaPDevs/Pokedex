@@ -35,6 +35,7 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
         isLoading: false,
         initialCapturedList: capturedPokemons.capturedPokemons,
         capturedList: capturedPokemons.capturedPokemons));
+    getPokemonsTypes();
   }
 
   // On pokemon card click
@@ -89,23 +90,26 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
 
   // Sort the list by pokemon ID
   orderListById() {
+    emit(state.copyWith(capturedList: state.initialCapturedList));
     state.capturedList.sort((a, b) => a.id.compareTo(b.id));
     emit(state.copyWith(capturedList: state.capturedList));
   }
 
   // Sort the list by pokemon name
   orderListByName() {
+    emit(state.copyWith(capturedList: state.initialCapturedList));
     state.capturedList.sort((a, b) => a.name.compareTo(b.name));
     emit(state.copyWith(capturedList: state.capturedList));
   }
 
   // Sort the list by main pokemon type
   orderListByType() {
+    emit(state.copyWith(capturedList: state.initialCapturedList));
     state.capturedList.sort((a, b) => a.types.first.compareTo(b.types.first));
     emit(state.copyWith(capturedList: state.capturedList));
   }
 
-  // Open or close search bar in the AppBar
+  // Open or close filter bar in the AppBar
   onExpandableClick() =>
       emit(state.copyWith(expandedAppbar: !state.expandedAppbar));
 
@@ -114,7 +118,33 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
     final pokemonType =
         await StorageServices.getMostRepeatedTypeInStorage(state.storage);
     emit(state.copyWith(
-      appbarColor: pokemonTypeColorMap[pokemonType],
-    ));
+        appbarColor: pokemonTypeColorMap[pokemonType], isLoading: false));
+  }
+
+  // Get all the types of the pokemons from the pokemons list
+  getPokemonsTypes() {
+    List<String> typesList = [];
+    for (var pokemon in state.capturedList) {
+      for (var type in pokemon.types) {
+        if (!typesList.contains(type)) {
+          typesList.add(type);
+        }
+      }
+    }
+    emit(state.copyWith(pokemonTypes: typesList));
+  }
+
+  // Filter by a pokemon's type
+  onTypeClick(String value) {
+    emit(state.copyWith(capturedList: state.initialCapturedList));
+    List<Pokemon> pokemonsByType = [];
+    for (var pokemon in state.capturedList) {
+      for (var type in pokemon.types) {
+        if (value == type) {
+          pokemonsByType.add(pokemon);
+        }
+      }
+    }
+    emit(state.copyWith(capturedList: pokemonsByType));
   }
 }

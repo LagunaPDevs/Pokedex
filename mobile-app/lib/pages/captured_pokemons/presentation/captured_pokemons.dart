@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/core/helpers/base_page.dart';
 import 'package:pokedex/pages/captured_pokemons/bloc/captured_pokemons_cubit.dart';
 import 'package:pokedex/pages/captured_pokemons/presentation/widget/appbar_filtering_child.dart';
+import 'package:pokedex/pages/captured_pokemons/presentation/widget/type_filter_selector.dart';
 
 // ui_kit
 import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
@@ -31,9 +32,30 @@ class CapturedPokemons
               bloc: bloc,
               state: state,
             )),
-        body: PokemonGridList(
-            isLoading: state.isLoading,
-            pokemonList: state.capturedList,
-            onPokemonClick: (id) => bloc.onClick(context, id: id)));
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: LayoutBuilder(builder: (context, constraints) {
+            final maxHeight = constraints.maxHeight;
+            return SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TypeFilterSelector(bloc: bloc, state: state),
+                  SizedBox(
+                    height: maxHeight,
+                    child: PokemonGridList(
+                        isLoading: state.isLoading,
+                        pokemonList: state.capturedList,
+                        onPokemonClick: (id) => bloc.onClick(context, id: id)),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
+            );
+          }),
+        ));
   }
 }

@@ -11,6 +11,7 @@ class CapturedPokemonsState {
   final List<Pokemon> capturedList;
   final List<CapturedPokemonsFilterBy> filtersList;
   final CapturedPokemonsFilterBy selectedFilter;
+  final List<String> pokemonTypes;
 
   CapturedPokemonsState({
     required this.isLoading,
@@ -21,6 +22,7 @@ class CapturedPokemonsState {
     required this.capturedList,
     required this.filtersList,
     required this.selectedFilter,
+    required this.pokemonTypes,
   });
 
   factory CapturedPokemonsState.initial() => CapturedPokemonsState(
@@ -31,7 +33,8 @@ class CapturedPokemonsState {
       initialCapturedList: [],
       capturedList: [],
       filtersList: CapturedPokemonsFilterBy.values,
-      selectedFilter: CapturedPokemonsFilterBy.byId);
+      selectedFilter: CapturedPokemonsFilterBy.byId,
+      pokemonTypes: []);
 
   CapturedPokemonsState copyWith(
           {bool? isLoading,
@@ -39,7 +42,8 @@ class CapturedPokemonsState {
           Color? appbarColor,
           List<Pokemon>? initialCapturedList,
           List<Pokemon>? capturedList,
-          CapturedPokemonsFilterBy? selectedFilter}) =>
+          CapturedPokemonsFilterBy? selectedFilter,
+          List<String>? pokemonTypes}) =>
       CapturedPokemonsState(
           isLoading: isLoading ?? this.isLoading,
           expandedAppbar: expandedAppbar ?? this.expandedAppbar,
@@ -48,5 +52,6 @@ class CapturedPokemonsState {
           initialCapturedList: initialCapturedList ?? this.initialCapturedList,
           capturedList: capturedList ?? this.capturedList,
           filtersList: filtersList,
-          selectedFilter: selectedFilter ?? this.selectedFilter);
+          selectedFilter: selectedFilter ?? this.selectedFilter,
+          pokemonTypes: pokemonTypes ?? this.pokemonTypes);
 }

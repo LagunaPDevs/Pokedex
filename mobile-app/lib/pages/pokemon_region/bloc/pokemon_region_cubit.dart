@@ -25,8 +25,7 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
         await PokeApiServices.getPokemonList(regionName: regionName);
     // As we are going to enable search in the page, we save the result of the
     // query in "initialList" var so we don't need to request it again
-    emit(state.copyWith(
-        isLoading: false, initialList: pokemonList, pokemonList: pokemonList));
+    emit(state.copyWith(initialList: pokemonList, pokemonList: pokemonList));
     // Set appbar color based in most captured pokemon type
     await setAppBarColor();
     // After that we can hide the splash screen
@@ -42,9 +41,7 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
   // and update appbar color with the result
   backFromDetailedPage() async {
     emit(state.copyWith(isLoading: true));
-    await StorageServices.getCapturedPokemonsList(state.storage);
     await setAppBarColor();
-    emit(state.copyWith(isLoading: false));
   }
 
   // On search event
@@ -69,10 +66,11 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
 
   // Change appbar color based on the most captured type of pokemon
   setAppBarColor() async {
+    // important to get first the updated list of captured pokemons
+    await StorageServices.getCapturedPokemonsList(state.storage);
     final pokemonType =
         await StorageServices.getMostRepeatedTypeInStorage(state.storage);
     emit(state.copyWith(
-      appbarColor: pokemonTypeColorMap[pokemonType],
-    ));
+        appbarColor: pokemonTypeColorMap[pokemonType], isLoading: false));
   }
 }
