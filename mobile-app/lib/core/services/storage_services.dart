@@ -37,21 +37,30 @@ class StorageServices {
 
   // Get most repeated value in a string array
   static String getMostRepeatedValue(List<String> list) {
+    // we create a map that will contain the string value and it number of
+    // repetitions
     Map<String, int> countMap = {};
-
     for (String value in list) {
       countMap[value] = (countMap[value] ?? 0) + 1;
     }
-    String mostRepeatedValue = list.first;
-    int maxCount = countMap[list.first]!;
-
+    // default values
+    String mostRepeatedValue = "unknown";
+    int maxCount = 0;
     for (String value in list) {
+      // if current value is greater than max count change most repeated value
+      // and update the counter
       if (countMap[value]! > maxCount) {
         mostRepeatedValue = value;
         maxCount = countMap[value]!;
       }
     }
-
+    // number of repetitions of maxValue
+    int repetitions = 0;
+    for (var value in countMap.values) {
+      if (value == maxCount) repetitions = repetitions + 1;
+    }
+    // if number of repetition is greater than 1 then return unknown type
+    if (repetitions > 1) return "unknown";
     return mostRepeatedValue;
   }
 
