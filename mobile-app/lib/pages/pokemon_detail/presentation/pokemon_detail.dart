@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 // project imports
 import 'package:pokedex/core/helpers/base_page.dart';
 import 'package:pokedex/pages/pokemon_detail/bloc/pokemon_detail_cubit.dart';
+import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
 
 // ui_kit
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
+import 'package:pokedex_ui_kit/widgets/animations/animated_button_to_icon.dart';
+import 'package:pokedex_ui_kit/widgets/animations/animated_shaking_svg.dart';
 import 'package:pokedex_ui_kit/widgets/cards/pokemon_detail_card.dart';
 import 'package:pokedex_ui_kit/widgets/app_bars/pokemon_detail_app_bar.dart';
 import 'package:pokedex_ui_kit/widgets/cards/pokemon_type_card.dart';
@@ -48,10 +51,16 @@ class PokemonDetail extends BasePage<PokemonDetailState, PokemonDetailCubit> {
                       height: 16,
                     ),
                     PokemonAboutBox(pokemon: state.pokemon!),
-                    ElevatedButton(
-                        onPressed: () => bloc.onButtonClick(),
-                        child: Text(
-                            state.isCaptured ? "Captured" : "Catch pokemon"))
+                    AnimatedButtonToIcon(
+                        reset: true,
+                        title: state.isCaptured
+                            ? "Release Pokemon"
+                            : "Catch pokemon",
+                        onTap: () => bloc.onButtonClick(),
+                        isCaptured: state.isCaptured,
+                        transitionWidget: const AnimatedShakingSvg(
+                          svgPath: PokedexIcons.colouredPokeball,
+                        ))
                   ],
                 ),
               ))

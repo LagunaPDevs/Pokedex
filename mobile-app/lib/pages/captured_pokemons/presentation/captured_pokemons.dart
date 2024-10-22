@@ -6,7 +6,6 @@ import 'package:pokedex/pages/captured_pokemons/presentation/widget/appbar_filte
 
 // ui_kit
 import 'package:pokedex_ui_kit/constants/svg_icons_constants.dart';
-import 'package:pokedex_ui_kit/theme/color_constants.dart';
 import 'package:pokedex_ui_kit/widgets/app_bars/pokemon_list_app_bar.dart';
 import 'package:pokedex_ui_kit/widgets/grids/pokemon_grid_list.dart';
 
