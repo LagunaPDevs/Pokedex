@@ -37,8 +37,8 @@ class StorageServices {
 
   // Get most repeated value in a string array
   static String getMostRepeatedValue(List<String> list) {
-    // we create a map that will contain the string value and it number of
-    // repetitions
+    // Create a map that will contain every string value and it number of
+    // occurrences
     Map<String, int> countMap = {};
     for (String value in list) {
       countMap[value] = (countMap[value] ?? 0) + 1;
@@ -70,6 +70,7 @@ class StorageServices {
     await storage.write(key: StorageConstants.trainerPokemonType, value: value);
   }
 
+  // Get the most repeated pokemont type from device storage
   static Future<String> getMostRepeatedTypeInStorage(
       FlutterSecureStorage storage) async {
     return await storage.read(key: StorageConstants.trainerPokemonType) ??

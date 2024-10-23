@@ -4,7 +4,7 @@ class PokedexRoutePath {
 
   PokedexRoutePath.auth() : _authenticated = false;
 
-  PokedexRoutePath.region(bool autentication) : _authenticated = autentication;
+  PokedexRoutePath.menu(bool autentication) : _authenticated = autentication;
 
   bool get isRootPage => _authenticated == false;
   bool get isRegionPage => _authenticated != false;
@@ -17,10 +17,9 @@ class PokedexRoutePath {
       return PokedexRoutePath.auth();
     }
 
-    // path: /regionPage
-    if (uri.pathSegments.length == 1 &&
-        uri.pathSegments.first == "regionPage") {
-      return PokedexRoutePath.region(true);
+    // path: /menuPage
+    if (uri.pathSegments.length == 1 && uri.pathSegments.first == "menuPage") {
+      return PokedexRoutePath.menu(true);
     }
     return PokedexRoutePath.auth();
   }

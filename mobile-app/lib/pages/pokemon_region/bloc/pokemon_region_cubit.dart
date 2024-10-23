@@ -23,8 +23,8 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
   Future<void> init(BuildContext context, {required String regionName}) async {
     final pokemonList =
         await PokeApiServices.getPokemonList(regionName: regionName);
-    // As we are going to enable search in the page, we save the result of the
-    // query in "initialList" var so we don't need to request it again
+    // As we are going to enable search, we save the result of the query in
+    //"initialList" var so we don't need to request it again
     emit(state.copyWith(initialList: pokemonList, pokemonList: pokemonList));
     // Set appbar color based in most captured pokemon type
     await setAppBarColor();
@@ -50,7 +50,7 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
     if (value.isEmpty) {
       emit(state.copyWith(pokemonList: state.initialList));
     } else {
-      List<Pokemon> resultList = state.pokemonList
+      List<Pokemon> resultList = state.initialList
           .where((pokemon) =>
               pokemon.name.toLowerCase().startsWith(value.toLowerCase()) ||
               pokemon.name.toLowerCase().contains(value.toLowerCase()))
@@ -66,7 +66,7 @@ class PokemonRegionCubit extends Cubit<PokemonRegionState> {
 
   // Change appbar color based on the most captured type of pokemon
   setAppBarColor() async {
-    // important to get first the updated list of captured pokemons
+    // important to first get the updated list of captured pokemons
     await StorageServices.getCapturedPokemonsList(state.storage);
     final pokemonType =
         await StorageServices.getMostRepeatedTypeInStorage(state.storage);

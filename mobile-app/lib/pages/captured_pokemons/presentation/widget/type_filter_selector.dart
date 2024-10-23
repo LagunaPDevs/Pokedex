@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+// project imports
 import 'package:pokedex/pages/captured_pokemons/bloc/captured_pokemons_cubit.dart';
+
+// ui_kit
 import 'package:pokedex_ui_kit/widgets/cards/pokemon_type_card.dart';
 
 class TypeFilterSelector extends StatelessWidget {

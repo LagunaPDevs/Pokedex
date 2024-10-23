@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 
 // external libraries
 import 'package:lottie/lottie.dart';
+
+// assets
 import 'package:pokedex_ui_kit/constants/assets_constants.dart';
 
 class PikachuRunningLoader extends StatelessWidget {

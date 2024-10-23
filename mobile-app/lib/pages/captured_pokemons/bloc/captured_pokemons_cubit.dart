@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // project imports
-import 'package:pokedex_ui_kit/model/pokemon.dart';
 import 'package:pokedex/core/models/storaged_captured_pokemon.dart';
 import 'package:pokedex/core/services/storage_services.dart';
 import 'package:pokedex/routes/route_page_manager.dart';
 
 // ui_kit
+import 'package:pokedex_ui_kit/model/pokemon.dart';
 import 'package:pokedex_ui_kit/theme/color_constants.dart';
 import 'package:pokedex_ui_kit/theme/pokemon_type_color_map.dart';
 
@@ -121,7 +121,8 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
         appbarColor: pokemonTypeColorMap[pokemonType], isLoading: false));
   }
 
-  // Get all the types of the pokemons from the pokemons list
+  // Get all the types of the pokemons from the pokemons list and add it to
+  // pokemonTypes list
   getPokemonsTypes() {
     List<String> typesList = [];
     for (var pokemon in state.capturedList) {

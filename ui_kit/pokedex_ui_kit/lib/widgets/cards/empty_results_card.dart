@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-// external libraries
-import 'package:pokedex_ui_kit/constants/assets_constants.dart';
-
 // package imports
 import 'package:pokedex_ui_kit/utils/app_fonts.dart';
+import 'package:pokedex_ui_kit/constants/assets_constants.dart';
 
 class EmptyResultsCard extends StatelessWidget {
   final String message;

@@ -46,7 +46,8 @@ class RoutePageManager extends ChangeNotifier {
   }
 
   // private navigation methods
-  // allows me to add a new view to the navigation stack, without affecting the navigation that comes in the queue
+  // allows me to add a new view to the navigation stack, without affecting the
+  // navigation that comes in the queue
   void _pushName({
     required String name,
     required Widget page,
@@ -63,7 +64,8 @@ class RoutePageManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  // It allows me to add a new view to the navigation stack, deleting the navigation that was already saved.
+  // It allows me to add a new view to the navigation stack, deleting the
+  // navigation that was already saved.
   void _pushNamedAndRemoveUntil({required String name, required Widget page}) {
     _pages.removeWhere((element) => true);
     _pages.add(
@@ -76,12 +78,15 @@ class RoutePageManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Used to execute an event after deleting a page from the stack.
+  // It is added to the page has been recently added to the stack.
   void _addEventGoBackToList(RouterPageModel routerPageModelParams) {
     if (routerPageModelParams.handled != null) {
       routerPageModels = [routerPageModelParams] + routerPageModels;
     }
   }
 
+  // Triggers an event when a page has been deleted from the stack.
   void _activeEventGoBackToList(String keyPage) {
     int indexPage =
         routerPageModels.indexWhere((element) => element.key == keyPage);
@@ -93,6 +98,7 @@ class RoutePageManager extends ChangeNotifier {
     }
   }
 
+  // Delete all pages from the stack except for the root one
   Future<void> setNewRoutePath(PokedexRoutePath pokedexRoutePath) async =>
       _pages.removeWhere((element) => element.name != PagesRoutes.rootPage);
 }

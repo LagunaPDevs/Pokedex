@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex_ui_kit/model/pokemon.dart';
 
 class PokeApiServices {
+  // Get pokemon list of a region from PokeApi based
   static Future<List<Pokemon>> getPokemonList(
       {required String regionName}) async {
     try {
@@ -29,11 +30,11 @@ class PokeApiServices {
       }
       return [];
     } catch (e) {
-      print(e);
+      return [];
     }
-    return [];
   }
 
+  // Get pokemon detailed information from PokeApi
   static Future<Pokemon?> getPokemon(int entry) async {
     String pokemonUrl = "https://pokeapi.co/api/v2/pokemon/$entry/";
     Uri detailPokemonId = Uri.parse(pokemonUrl);

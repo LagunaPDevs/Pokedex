@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_ui_kit/constants/assets_constants.dart';
-
-// package imports
-import 'package:pokedex_ui_kit/theme/color_constants.dart';
 
 // external libraries
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
+
+// package imports
+import 'package:pokedex_ui_kit/theme/color_constants.dart';
+
+// assets
+import 'package:pokedex_ui_kit/constants/assets_constants.dart';
 
 typedef BuildBody = Widget Function(BuildContext context, ImageProvider url);
 

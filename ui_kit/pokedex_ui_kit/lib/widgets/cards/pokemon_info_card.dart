@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // external libraries
 import 'package:flutter_svg/flutter_svg.dart';
+
+// package imports
 import 'package:pokedex_ui_kit/utils/app_fonts.dart';
 
 class PokemonInfoCard extends StatelessWidget {
