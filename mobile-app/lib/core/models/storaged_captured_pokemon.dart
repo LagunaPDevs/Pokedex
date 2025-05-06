@@ -9,7 +9,7 @@ class StoragedCapturedPokemons {
   factory StoragedCapturedPokemons.fromJson(Map<String, dynamic> json) =>
       StoragedCapturedPokemons(
           capturedPokemons: List<Pokemon>.from(
-              json["capturedPokemons"].map((x) => Pokemon.fromJson(x))));
+              json["capturedPokemons"].map((x) => Pokemon.fromJsonStorage(x))));
 
   Map<String, dynamic> toJson() => {
         "capturedPokemons": capturedPokemons,

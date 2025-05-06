@@ -83,8 +83,6 @@ class CapturedPokemonsCubit extends Cubit<CapturedPokemonsState> {
         return "Name";
       case CapturedPokemonsFilterBy.byType:
         return "Type";
-      default:
-        return "ID";
     }
   }
 

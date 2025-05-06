@@ -17,14 +17,7 @@ class PokeApiServices {
         List<dynamic> pokemonArray = result["pokemon_entries"];
         List<Pokemon> pokemonList = [];
         for (var item in pokemonArray) {
-          pokemonList.add(Pokemon(
-              id: item["entry_number"],
-              name: item["pokemon_species"]["name"],
-              image:
-                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item["entry_number"]}.png",
-              height: 0,
-              weight: 0,
-              types: []));
+          pokemonList.add(Pokemon.fromJsonPokemonList(item));
         }
         return pokemonList;
       }
@@ -41,19 +34,7 @@ class PokeApiServices {
     final response = await http.get(detailPokemonId);
     final result = jsonDecode(response.body);
     if (result != null) {
-      var resultTypeArray = result["types"];
-      List<String> typeArray = [];
-      for (var type in resultTypeArray) {
-        typeArray.add(type["type"]["name"]);
-      }
-      Pokemon pokemon = Pokemon(
-          id: result["id"],
-          name: result["name"],
-          image: result["sprites"]["other"]["official-artwork"]
-              ["front_default"],
-          height: result["height"],
-          weight: result["weight"],
-          types: typeArray);
+      Pokemon pokemon = Pokemon.fromJson(result);
       return pokemon;
     }
     return null;
